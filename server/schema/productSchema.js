@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productScheam = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     id: String,
     title: String,
     imageUrl: String,
@@ -9,4 +9,4 @@ const productScheam = new mongoose.Schema({
     sizes: [String]    
 })
 
-module.exports = productScheam
+module.exports = productSchema
