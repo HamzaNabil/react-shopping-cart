@@ -10,7 +10,7 @@ import data from './data.json'
 import store from './store/store';
 
 function App() {
-  const [products, setProducts] = useState(data)
+  const [products, setProducts] = useState([])
   const [sort, setSort] = useState("");
   const [size, setSize] = useState("");
   const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem('cartItems')) || []);
