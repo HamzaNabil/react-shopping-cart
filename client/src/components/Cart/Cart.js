@@ -6,9 +6,10 @@ import Modal from 'react-modal'
 import { connect } from 'react-redux';
 import { removeCart } from '../../store/actions/cart';
 import OrderModal from './OrderModal';
+import {createOrder, clearOrder} from '../../store/actions/orders'
+
 function Cart(props) {
     const [showForm, setShowForm] = useState(false);
-    const [order, setOrder] = useState(false);
     const [value, setValue] = useState("")
 
     const submitOrder = (e) => {
@@ -17,11 +18,12 @@ function Cart(props) {
             name : value.name,
             email: value.email
         }
-        setOrder(order);
+        props.createOrder(order);
     }
 
     const closeModal = () => {
-        setOrder(false)
+        props.clearOrder();
+        setShowForm(false)
     }
 
     const handleChange = (e) => {
@@ -34,7 +36,7 @@ function Cart(props) {
                 There is {props.cartItems.length} products in cart
                 </p>} </div>
             {/* Modal */}
-            <OrderModal cartItems={props.cartItems} order={order} closeModal={closeModal} />
+            <OrderModal cartItems={props.cartItems} order={props.order} closeModal={closeModal} />
             <Bounce bottom cascade>
                 <div className="cart-items">
                     {props.cartItems.map(item => (
@@ -81,6 +83,7 @@ function Cart(props) {
 
 export default connect((state) =>{
     return {
+        order: state.order.order,
         cartItems: state.cart.cartItems
     }
-}, {removeCart} )(Cart)
+}, {removeCart, createOrder, clearOrder} )(Cart)
