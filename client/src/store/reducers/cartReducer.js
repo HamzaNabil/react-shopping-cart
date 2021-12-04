@@ -12,7 +12,7 @@ export const cartReducer = (state = {
             return {cartItems: action.data.cartItems}    
 
         case CLEAR_CART:
-            return {...state, cartItems: []}
+            return {...state, products: [] }
         default: 
             return state
         
